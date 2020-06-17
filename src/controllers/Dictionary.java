@@ -14,8 +14,11 @@ public class Dictionary {
     public HashMap<String, String> myDictionary = new HashMap<>();
 
     public String search(String word){
-        String result = "not found";
+        String result;
         result = myDictionary.get(word);
+        if (result == null){
+            result = "not found";
+        }
         return result;
     }
 
@@ -29,7 +32,6 @@ public class Dictionary {
 
     @GetMapping("/dictionary")
     public String showMeaning(@RequestParam String word,Model model){
-        model.addAttribute("word", search(word));
         return "result";
     }
 }
